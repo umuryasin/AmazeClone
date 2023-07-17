@@ -1,0 +1,2 @@
+# AmazeClone
+ Amaze clone game
