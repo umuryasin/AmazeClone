@@ -24,7 +24,7 @@ class InputManager : MonoBehaviour
         {
             initMousePos = Input.mousePosition;
         }
-        else if (Input.GetMouseButton(0))
+        else if (Input.GetMouseButtonUp(0)) 
         {
             Vector3 currentMousePos = Input.mousePosition;
             Vector3 diffPos = currentMousePos - initMousePos;
@@ -35,12 +35,10 @@ class InputManager : MonoBehaviour
             {
                 if (deltaX > 0)
                 {
-                    Debug.Log("right");
                     EventManager.OnInputChanged(InputState.Right);
                 }
                 else
                 {
-                    Debug.Log("left");
                     EventManager.OnInputChanged(InputState.Left);
                 }
             }
@@ -48,12 +46,10 @@ class InputManager : MonoBehaviour
             {
                 if (deltaY > 0)
                 {
-                    Debug.Log("up");
                     EventManager.OnInputChanged(InputState.Up);
                 }
                 else
                 {
-                    Debug.Log("down");
                     EventManager.OnInputChanged(InputState.Down);
                 }
             }

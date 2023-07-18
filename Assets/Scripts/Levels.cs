@@ -6,13 +6,13 @@ public class Levels
 {
     public static Level[] levels = new Level[] {
 
-        new Level(new int[,] { {0,0,0,0,0,0,0,0,0 },
+        new Level(new int[,] { {0,0,1,0,0,0,1,0,0 },
                                {0,0,0,0,0,0,0,0,0 },
                                {0,0,0,0,0,0,0,0,0 },
                                {0,0,0,1,1,1,0,0,0 },
                                {0,0,0,1,1,1,0,0,0 },
                                {0,0,0,1,1,1,0,0,0 },
-                               {0,0,0,1,1,1,0,0,0 },
+                               {1,0,0,1,1,1,0,0,1 },
                                },
                                new Invader(new GridVector(2, 3))),
 

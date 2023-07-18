@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class BlockControl : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public BlockType blockType;
+
+    public MeshRenderer renderer;
+    private MaterialPropertyBlock propertyBlock;
+
+    void Awake()
     {
-        
+        propertyBlock = new MaterialPropertyBlock();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetAsMarked(Color color)
     {
-        
+        renderer.GetPropertyBlock(propertyBlock);
+        propertyBlock.SetColor("_Color", color);
+        renderer.SetPropertyBlock(propertyBlock);
+
+        blockType = BlockType.Marked;
     }
+
+}
+
+public enum BlockType
+{
+    Wall,
+    UnMarked,
+    Marked,
 }

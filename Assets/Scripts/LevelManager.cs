@@ -96,8 +96,8 @@ public class LevelManager : MonoBehaviour
         Level currentLevel = Levels.levels[levelIndex];
 
         int[,] LevelMap = currentLevel.GetLevelMap();
-        int mapRows = LevelMap.GetLength(0);
-        int mapCols = LevelMap.GetLength(1);
+        int mapRows = currentLevel.GetLevelRow();
+        int mapCols = currentLevel.GetLevelCol();
 
         activeCubeArr = new BlockControl[mapRows, mapCols];
 
@@ -113,12 +113,13 @@ public class LevelManager : MonoBehaviour
                 {
                     if (LevelMap[row, col] == 1)
                     {
-
                         dBlock = CreateBlockFromGrid(obstacleCube, row, col);
+                        dBlock.blockType = BlockType.Wall;
                     }
                     else
                     {
                         dBlock = CreateBlockFromGrid(baseCube, row, col, 0);
+                        dBlock.blockType = BlockType.UnMarked;
                     }
 
                     activeCubeArr[row, col] = dBlock;
