@@ -16,7 +16,6 @@ public enum GameStates
     ScoreUp,
     LoseGame,
     WinGame,
-    NextLevel,
     LoadLevel,
     LevelLoaded,
 };
@@ -60,11 +59,6 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         EventManager.UpdateGameState(GameStates.RestartGame);
-    }
-
-    public void NextLevel()
-    {
-        EventManager.UpdateGameState(GameStates.NextLevel);
     }
 
     public void LoadLevel()

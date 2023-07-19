@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum InputState
 {
@@ -24,7 +25,7 @@ class InputManager : MonoBehaviour
         {
             initMousePos = Input.mousePosition;
         }
-        else if (Input.GetMouseButtonUp(0)) 
+        else if (Input.GetMouseButtonUp(0))
         {
             Vector3 currentMousePos = Input.mousePosition;
             Vector3 diffPos = currentMousePos - initMousePos;
@@ -53,7 +54,7 @@ class InputManager : MonoBehaviour
                     EventManager.OnInputChanged(InputState.Down);
                 }
             }
-        
+
         }
         else if (Input.GetMouseButtonUp(0))
         {

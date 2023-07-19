@@ -65,18 +65,13 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.RestartGame();
     }
 
-    public void NextLevel()
-    {
-        GameManager.Instance.NextLevel();
-    }
-
     private void GameManager_onGameStateChanged(GameStates GameState)
     {
         if (GameState == GameStates.LoadLevel)
         {
             LoadLevel();
         }
-        else if (GameState == GameStates.NextLevel)
+        else if (GameState == GameStates.WinGame)
         {
             levelIndex = (levelIndex + 1) % maxLevelCount;
         }

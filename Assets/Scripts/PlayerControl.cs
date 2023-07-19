@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+    public GameObject parent;
     public GridVector currentPos;
     public bool isPlayerMoving => _startMove;
 
     private Vector3 _targetPos;
     private bool _startMove;
-    private float _speed = 25;
+    private float _speed = 35;
 
     // Start is called before the first frame update
     void Start()
@@ -64,8 +65,11 @@ public class PlayerControl : MonoBehaviour
         targetPosWord.z = initPosZ;
         _targetPos = targetPosWord;
         _startMove = true;
-        Debug.Log(" targetPos = " + _targetPos);
+    }
 
+    public void SetActive(bool isActive)
+    {
+        parent.SetActive(isActive);
     }
 
 }

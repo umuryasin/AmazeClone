@@ -12,7 +12,8 @@ class GamePlayManager : MonoBehaviour
     private int mapCol;
 
     private int _unMarkedblockCount;
-    private int _markedblockCount;
+
+    private bool _isGameStart;
 
     private void OnEnable()
     {
@@ -42,10 +43,13 @@ class GamePlayManager : MonoBehaviour
 
             _unMarkedblockCount = Tools.GetUnMarkedBlockCount(blockMap);
             InitPlayerToGrid();
+            _isGameStart = true;
         }
-        else if (GameState == GameStates.NextLevel)
+        else if (GameState == GameStates.WinGame)
         {
+            //playerControl.SetActive(false);
         }
+    
     }
 
     private void InitPlayerToGrid()
@@ -54,6 +58,7 @@ class GamePlayManager : MonoBehaviour
         GridVector initPos = Levels.levels[levelIndex].GetPlayer().pos;
         playerControl.InitPos(initPos);
         SetBlockColor(initPos, Color.red);
+        playerControl.SetActive(true);
     }
     private void OnGridPosChanged(GridVector gridPos)
     {
@@ -63,6 +68,9 @@ class GamePlayManager : MonoBehaviour
     private void HandleInput(InputState inputState)
     {
         if (playerControl.isPlayerMoving)
+            return; 
+        
+        if (!_isGameStart)
             return;
 
         GridVector directionVector = GetDirectionVector(inputState);
@@ -111,9 +119,8 @@ class GamePlayManager : MonoBehaviour
         int markedBlockCount = Tools.GetMarkedBlockCount(blockMap);
         if (markedBlockCount == _unMarkedblockCount)
         {
-            Debug.Log(" success");
-            GameManager.Instance.NextLevel();
-            GameManager.Instance.LoadLevel();
+            GameManager.Instance.WinGame();
+            _isGameStart = false;
         }
     }
 
