@@ -13,22 +13,22 @@ public enum InputState
 
 class InputManager : MonoBehaviour
 {
-    private static InputManager instance;
+    private static InputManager _instance;
 
-    public static InputManager Instance => instance ?? (instance = FindObjectOfType<InputManager>());
+    public static InputManager Instance => _instance ?? (_instance = FindObjectOfType<InputManager>());
 
-    private Vector3 initMousePos;
+    private Vector3 _initMousePos;
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            initMousePos = Input.mousePosition;
+            _initMousePos = Input.mousePosition;
         }
         else if (Input.GetMouseButtonUp(0))
         {
             Vector3 currentMousePos = Input.mousePosition;
-            Vector3 diffPos = currentMousePos - initMousePos;
+            Vector3 diffPos = currentMousePos - _initMousePos;
             float deltaX = diffPos.x;
             float deltaY = diffPos.y;
 

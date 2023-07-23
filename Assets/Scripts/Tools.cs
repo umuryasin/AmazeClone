@@ -119,41 +119,53 @@ public struct GridVector
         else
             return true;
     }
+
+    public static int GetManhattanDistance(GridVector pos1, GridVector pos2)
+    {
+        return Mathf.Abs(pos1.Row - pos2.Row) + Mathf.Abs(pos1.Col - pos2.Col);
+    }
 }
 
 public class Level
 {
-    private int[,] LevelMap;
-    private Invader playerPos;
+    private int[,] _LevelMap;
+    private Invader _playerPos;
+    private Color _playerColor;
 
-    public Level(int[,] map, Invader enemyPos)
+    public Level(int[,] map, Invader enemyPos, Color color)
     {
-        LevelMap = (int[,])map.Clone();
-        playerPos = enemyPos;
+        _LevelMap = (int[,])map.Clone();
+        _playerPos = enemyPos;
+        _playerColor = color;
     }
 
     public int[,] GetLevelMap()
     {
-        return LevelMap;
+        return _LevelMap;
     }
 
     public int GetLevelRow()
     {
-        return LevelMap.GetLength(0);
+        return _LevelMap.GetLength(0);
     }
     public int GetLevelCol()
     {
-        return LevelMap.GetLength(1);
+        return _LevelMap.GetLength(1);
     }
 
     public Invader GetPlayer()
     {
-        return playerPos;
+        return _playerPos;
+    }
+
+    public Color GetPlayerColor()
+    {
+        return _playerColor;
     }
 
     public Level DeepCopy()
     {
-        Level dLevel = new Level(LevelMap, playerPos);
+        Level dLevel = new Level(_LevelMap, _playerPos, _playerColor);
         return dLevel;
     }
 
@@ -161,14 +173,14 @@ public class Level
     {
         int ObstacleCount = 0;
 
-        int levelMapRows = LevelMap.GetLength(0);
-        int LevelMapCols = LevelMap.GetLength(1);
+        int levelMapRows = _LevelMap.GetLength(0);
+        int LevelMapCols = _LevelMap.GetLength(1);
 
         for (int row = 0; row < levelMapRows; row++)
         {
             for (int col = 0; col < LevelMapCols; col++)
             {
-                if (LevelMap[row, col] == 1)
+                if (_LevelMap[row, col] == 1)
                 {
                     ObstacleCount++;
                 }
@@ -182,14 +194,14 @@ public class Level
     {
         int ObstacleCount = 0;
 
-        int levelMapRows = LevelMap.GetLength(0);
-        int LevelMapCols = LevelMap.GetLength(1);
+        int levelMapRows = _LevelMap.GetLength(0);
+        int LevelMapCols = _LevelMap.GetLength(1);
 
         for (int row = 0; row < levelMapRows; row++)
         {
             for (int col = 0; col < LevelMapCols; col++)
             {
-                if (LevelMap[row, col] == 0)
+                if (_LevelMap[row, col] == 0)
                 {
                     ObstacleCount++;
                 }

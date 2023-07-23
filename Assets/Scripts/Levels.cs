@@ -11,7 +11,8 @@ public class Levels
                                {0,1,1,0},
                                {0,0,0,0},
                                },
-                               new Invader(new GridVector(3, 0))),
+                               new Invader(new GridVector(3, 0)),
+                               Color.red),
 
         new Level(new int[,] { {0,0,0,0,0},
                                {0,1,1,1,0},
@@ -19,7 +20,8 @@ public class Levels
                                {0,1,0,1,0},
                                {0,1,0,0,0},
                                },
-                               new Invader(new GridVector(4, 0))),
+                               new Invader(new GridVector(4, 0)),
+                               Color.green),
 
             new Level(new int[,] { {0,0,0,1,0},
                                    {0,1,0,1,0},
@@ -27,7 +29,8 @@ public class Levels
                                    {1,1,0,1,0},
                                    {0,0,0,1,0},
                                    },
-                                       new Invader(new GridVector(4, 0))),
+                                       new Invader(new GridVector(4, 0)),
+                                       Color.yellow),
 
 
             new Level(new int[,] { {0,0,0,1,0,0,0},
@@ -38,7 +41,8 @@ public class Levels
                                    {0,1,1,1,1,1,0},
                                    {0,0,0,0,0,0,0},
                                    },
-                                       new Invader(new GridVector(6, 0))),
+                                       new Invader(new GridVector(6, 0)),
+                                       Color.magenta),
 
              new Level(new int[,] { {0,0,0,0,1,1,0,0},
                                     {1,1,0,0,0,0,0,0},
@@ -47,7 +51,8 @@ public class Levels
                                     {1,1,1,1,1,1,0,0},
                                     {0,0,0,0,0,0,0,0},
                                    },
-                                       new Invader(new GridVector(5, 0))),
+                                       new Invader(new GridVector(5, 0)),
+                                       Color.blue),
 
 
             new Level(new int[,] {  {0,0,1,1,0,1,1 },
@@ -57,7 +62,8 @@ public class Levels
                                     {0,1,0,0,0,0,0 },
                                     {0,0,0,0,0,0,0 },
                                    },
-                                       new Invader(new GridVector(5, 0))),
+                                       new Invader(new GridVector(5, 0)),
+                                       Color.red),
 
             new Level(new int[,] {  {1,0,0,0,0,0},
                                     {0,0,0,0,0,0},
@@ -66,7 +72,8 @@ public class Levels
                                     {0,0,0,0,0,0},
                                     {0,0,0,0,0,1},
                                    },
-                                       new Invader(new GridVector(5, 0))),
+                                       new Invader(new GridVector(5, 0)),
+                                       Color.green),
 
              new Level(new int[,] { {1,0,0,0,0,0,0},
                                     {1,0,1,1,1,1,0},
@@ -75,7 +82,8 @@ public class Levels
                                     {1,0,1,0,1,1,0},
                                     {0,0,1,0,0,0,0},
                                    },
-                                       new Invader(new GridVector(5, 0))),
+                                       new Invader(new GridVector(5, 0)),
+                                       Color.yellow),
 
              new Level(new int[,] { {0,0,0,1,0,0,0},
                                     {0,0,0,0,0,0,0},
@@ -85,7 +93,8 @@ public class Levels
                                     {0,0,0,1,1,0,0},
                                     {0,1,0,0,0,0,0},
                                    },
-                                       new Invader(new GridVector(6, 0))),
+                                       new Invader(new GridVector(6, 0)),
+                                       Color.magenta),
 
              new Level(new int[,] { {0,0,1,0,0,0,0},
                                     {0,0,1,0,1,1,0},
@@ -96,7 +105,8 @@ public class Levels
                                     {0,1,1,0,1,1,1},
                                     {0,0,0,0,1,1,1},
                                    },
-                                       new Invader(new GridVector(7, 0))),
+                                       new Invader(new GridVector(7, 0)),
+                                       Color.blue),
 
     };
 }

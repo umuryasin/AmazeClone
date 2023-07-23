@@ -1,17 +1,13 @@
 ﻿using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private Canvas mainMenu;
-    [SerializeField] private Canvas winMenu;
-
-    [SerializeField] private CanvasGroup effectMenu;
-
-    [SerializeField] private TextMeshProUGUI txtLevelGame;
+    public Canvas mainMenu;
+    public Canvas winMenu;
+    public CanvasGroup effectMenu;
+    public TextMeshProUGUI txtLevelGame;
 
     void OnEnable()
     {
@@ -43,7 +39,6 @@ public class MenuManager : MonoBehaviour
         {
             StartGame();
             int levelIndex = LevelManager.Instance.GetLevelIndex() + 1;
-            txtLevelGame.text = "Level " + levelIndex.ToString();
         }
     }
 

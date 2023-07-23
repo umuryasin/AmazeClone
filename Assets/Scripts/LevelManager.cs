@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private BlockControl baseCube;
-    [SerializeField] private BlockControl obstacleCube;
-
-    [SerializeField] private int maxLevelAreaRows = 40;
-    [SerializeField] private int maxLevelAreaCols = 40;
-
-    [SerializeField] private int maxLevelCount = 10;
-    [SerializeField] private int levelIndex = 0;
-
-    private List<BlockControl> cubeObjectList;
+    public BlockControl baseCube;
+    public BlockControl obstacleCube;
+    public int maxLevelAreaRows = 40;
+    public int maxLevelAreaCols = 40;
+    public int maxLevelCount = 10;
+    public int levelIndex = 0;
 
     public BlockControl[,] activeCubeArr;
 
-    private static LevelManager instance;
+    private List<BlockControl> _cubeObjectList;
+    private static LevelManager _instance;
 
-    public static LevelManager Instance => instance ?? (instance = FindObjectOfType<LevelManager>());
+    public static LevelManager Instance => _instance ?? (_instance = FindObjectOfType<LevelManager>());
 
     private void OnEnable()
     {
@@ -35,17 +32,17 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (_instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
-        cubeObjectList = new List<BlockControl>();
+        _cubeObjectList = new List<BlockControl>();
 
     }
 
@@ -80,9 +77,16 @@ public class LevelManager : MonoBehaviour
 
     private void LoadLevel()
     {
-        ClearGame();
-        BuildLevelMap();
-        GameManager.Instance.LevelLoaded();
+        StartCoroutine(LoadLevelAsync());
+
+        IEnumerator LoadLevelAsync()
+        {
+            ClearGame();
+            BuildLevelMap();
+            yield return new WaitForSeconds(0.2f);
+            GameManager.Instance.LevelLoaded();
+        }
+
     }
 
     private void BuildLevelMap()
@@ -124,7 +128,7 @@ public class LevelManager : MonoBehaviour
                     dBlock = CreateBlockFromGrid(obstacleCube, row, col);
                 }
 
-                cubeObjectList.Add(dBlock);
+                _cubeObjectList.Add(dBlock);
             }
         }
     }
@@ -138,12 +142,12 @@ public class LevelManager : MonoBehaviour
 
     private void ClearGame()
     {
-        int objectCount = cubeObjectList.Count;
+        int objectCount = _cubeObjectList.Count;
         for (int i = 0; i < objectCount; i++)
         {
-            Destroy(cubeObjectList[i].gameObject);
+            Destroy(_cubeObjectList[i].gameObject);
         }
-        cubeObjectList.Clear();
+        _cubeObjectList.Clear();
     }
 
     public int GetLevelIndex()

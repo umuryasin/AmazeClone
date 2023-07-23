@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    [SerializeField] private Camera gameCamera;
+    public Camera gameCamera;
 
-    private int blockOffset = 7;
-    private int blocSize = 1;
+    public int blockOffset = 7;
+    public int blocSize = 1;
 
     void OnEnable()
     {

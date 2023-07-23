@@ -7,17 +7,16 @@ class GamePlayManager : MonoBehaviour
 {
     public PlayerControl playerControl;
 
-    private BlockControl[,] blockMap;
-    private int mapRow;
-    private int mapCol;
+    private BlockControl[,] _blockMap;
+    private int _mapRow;
+    private int _mapCol;
 
     private int _unMarkedblockCount;
-
+    private Color _blockColor;
     private bool _isGameStart;
 
     private void OnEnable()
     {
-        // Subscribe to the event
         EventManager.onGameStateChanged += GameManager_onGameStateChanged;
         EventManager.onInputChanged += HandleInput;
         EventManager.onGridPosChanged += OnGridPosChanged;
@@ -26,7 +25,6 @@ class GamePlayManager : MonoBehaviour
 
     private void OnDisable()
     {
-        // Unsubscribe to the event
         EventManager.onGameStateChanged -= GameManager_onGameStateChanged;
         EventManager.onInputChanged -= HandleInput;
         EventManager.onGridPosChanged -= OnGridPosChanged;
@@ -37,40 +35,46 @@ class GamePlayManager : MonoBehaviour
     {
         if (GameState == GameStates.LevelLoaded)
         {
-            blockMap = LevelManager.Instance.activeCubeArr;
-            mapRow = blockMap.GetLength(0);
-            mapCol = blockMap.GetLength(1);
+            _blockMap = LevelManager.Instance.activeCubeArr;
+            _mapRow = _blockMap.GetLength(0);
+            _mapCol = _blockMap.GetLength(1);
 
-            _unMarkedblockCount = Tools.GetUnMarkedBlockCount(blockMap);
+            _unMarkedblockCount = Tools.GetUnMarkedBlockCount(_blockMap);
             InitPlayerToGrid();
             _isGameStart = true;
         }
+        else if(GameState == GameStates.LoadLevel)
+        {
+            playerControl.SetPlayerActive(false);
+        }
         else if (GameState == GameStates.WinGame)
         {
-            //playerControl.SetActive(false);
+            _isGameStart = false;
         }
-    
+
     }
 
     private void InitPlayerToGrid()
     {
         int levelIndex = LevelManager.Instance.GetLevelIndex();
         GridVector initPos = Levels.levels[levelIndex].GetPlayer().pos;
+        _blockColor = Levels.levels[levelIndex].GetPlayerColor();
         playerControl.InitPos(initPos);
-        SetBlockColor(initPos, Color.red);
-        playerControl.SetActive(true);
+        playerControl.InitColor(_blockColor);
+        SetBlockColor(initPos);
+        playerControl.SetPlayerActive(true);
     }
     private void OnGridPosChanged(GridVector gridPos)
     {
-        SetBlockColor(gridPos, Color.red);
+        SetBlockColor(gridPos);
     }
 
     private void HandleInput(InputState inputState)
     {
-        if (playerControl.isPlayerMoving)
-            return; 
-        
         if (!_isGameStart)
+            return;
+
+        if (playerControl.isPlayerMoving)
             return;
 
         GridVector directionVector = GetDirectionVector(inputState);
@@ -82,9 +86,9 @@ class GamePlayManager : MonoBehaviour
             int row = playerPos.Row + directionVector.Row;
             int col = playerPos.Col + directionVector.Col;
 
-            if (row >= 0 && row < mapRow && col >= 0 && col < mapCol)
+            if (row >= 0 && row < _mapRow && col >= 0 && col < _mapCol)
             {
-                if (blockMap[row, col].blockType == BlockType.Wall)
+                if (_blockMap[row, col].blockType == BlockType.Wall)
                 {
                     isNextPosActive = false;
                 }
@@ -102,25 +106,25 @@ class GamePlayManager : MonoBehaviour
 
         if (playerPos != playerControl.currentPos)
         {
-            playerControl.StartMove(playerPos);
+            playerControl.StartMove(playerPos, directionVector);
         }
 
     }
 
-    private void SetBlockColor(GridVector gridPos, Color color)
+    private void SetBlockColor(GridVector gridPos)
     {
         int row = gridPos.Row;
         int col = gridPos.Col;
-        blockMap[row, col].SetAsMarked(color);
+        Color color = _blockColor - Color.white * 0.35f;
+        _blockMap[row, col].SetAsMarked(color);
     }
 
     private void OnPlayerMoveEnd()
     {
-        int markedBlockCount = Tools.GetMarkedBlockCount(blockMap);
+        int markedBlockCount = Tools.GetMarkedBlockCount(_blockMap);
         if (markedBlockCount == _unMarkedblockCount)
         {
             GameManager.Instance.WinGame();
-            _isGameStart = false;
         }
     }
 

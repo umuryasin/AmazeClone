@@ -32,14 +32,14 @@ MonoBehaviour:
   defaultEasePeriod: 0
   defaultAutoKill: 1
   defaultLoopType: 0
-  debugMode: 0
+  debugMode: 1
   debugStoreTargetId: 1
   showPreviewPanel: 1
   storeSettingsLocation: 0
   modules:
     showPanel: 0
-    audioEnabled: 1
-    physicsEnabled: 1
+    audioEnabled: 0
+    physicsEnabled: 0
     physics2DEnabled: 1
     spriteEnabled: 1
     uiEnabled: 1
@@ -48,6 +48,6 @@ MonoBehaviour:
     deAudioEnabled: 0
     deUnityExtendedEnabled: 0
     epoOutlineEnabled: 0
-  createASMDEF: 0
+  createASMDEF: 1
   showPlayingTweens: 0
   showPausedTweens: 0

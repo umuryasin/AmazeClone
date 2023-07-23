@@ -13,7 +13,6 @@ public enum GameStates
     EndGameStarted,
     EndGameFinished,
     RestartGame,
-    ScoreUp,
     LoseGame,
     WinGame,
     LoadLevel,
@@ -23,19 +22,19 @@ public enum GameStates
 public class GameManager : MonoBehaviour
 {
 
-    private static GameManager instance;
+    private static GameManager _instance;
 
-    public static GameManager Instance => instance ?? (instance = FindObjectOfType<GameManager>());
+    public static GameManager Instance => _instance ?? (_instance = FindObjectOfType<GameManager>());
 
     void Awake()
     {
-        if (instance != null)
+        if (_instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -71,8 +70,4 @@ public class GameManager : MonoBehaviour
         EventManager.UpdateGameState(GameStates.LevelLoaded);
     }
 
-    public void ScoreUp()
-    {
-        EventManager.UpdateGameState(GameStates.ScoreUp);
-    }
 }

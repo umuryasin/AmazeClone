@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Levels.cs" />
     <Compile Include="Assets\Scripts\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\PlayerBallViewControl.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Tools.cs" />
     <Compile Include="Assets\Scripts\UIInputManager.cs" />
@@ -662,9 +663,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{857E89C5-F9D1-AE94-02C7-FCC2E6E1A027}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
+    <ProjectReference Include="DOTween.Modules.csproj">
+      <Project>{321B13DD-6D64-69BE-3685-0C99549B02A8}</Project>
+      <Name>DOTween.Modules</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

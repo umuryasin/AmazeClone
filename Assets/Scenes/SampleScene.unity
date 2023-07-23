@@ -259,7 +259,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a88cfa89b22d9da4ea07dbca73d52b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 607679159}
+  speed: 35
+  scaleAnimMagnitude: 0.25
+  scaleAnimTime: 0.25
+  InitscaleAnimMagnitude: 0.5
+  InitscaleAnimTime: 0.2
+  playerBallViewControl: {fileID: 607679161}
 --- !u!1 &607679159
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 607679160}
+  - component: {fileID: 607679161}
   m_Layer: 0
   m_Name: Parent
   m_TagString: Untagged
@@ -292,6 +298,19 @@ Transform:
   m_Father: {fileID: 365388957}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &607679161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607679159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37737c2cbc4671549a033e2110ab924e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 1650538705}
 --- !u!1 &651345766
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,6 +649,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameCamera: {fileID: 963194227}
+  blockOffset: 7
+  blocSize: 1
 --- !u!4 &1209570882
 Transform:
   m_ObjectHideFlags: 0

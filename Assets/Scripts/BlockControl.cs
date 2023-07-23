@@ -7,18 +7,18 @@ public class BlockControl : MonoBehaviour
     public BlockType blockType;
 
     public MeshRenderer renderer;
-    private MaterialPropertyBlock propertyBlock;
+    private MaterialPropertyBlock _propertyBlock;
 
     void Awake()
     {
-        propertyBlock = new MaterialPropertyBlock();
+        _propertyBlock = new MaterialPropertyBlock();
     }
 
     public void SetAsMarked(Color color)
     {
-        renderer.GetPropertyBlock(propertyBlock);
-        propertyBlock.SetColor("_Color", color);
-        renderer.SetPropertyBlock(propertyBlock);
+        renderer.GetPropertyBlock(_propertyBlock);
+        _propertyBlock.SetColor("_Color", color);
+        renderer.SetPropertyBlock(_propertyBlock);
 
         blockType = BlockType.Marked;
     }
