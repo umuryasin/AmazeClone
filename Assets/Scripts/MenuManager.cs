@@ -39,6 +39,7 @@ public class MenuManager : MonoBehaviour
         {
             StartGame();
             int levelIndex = LevelManager.Instance.GetLevelIndex() + 1;
+            txtLevelGame.text = "Level " + levelIndex.ToString();
         }
     }
 
