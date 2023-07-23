@@ -1053,6 +1053,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36016050847817941bbe7e9464b04ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winAnimDelayTimeMag: 0.25
+  winAnimDelayTime: 0.75
   playerControl: {fileID: 365388958}
 --- !u!4 &1852972108
 Transform:

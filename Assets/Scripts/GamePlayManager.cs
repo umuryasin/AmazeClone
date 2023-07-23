@@ -1,10 +1,15 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 class GamePlayManager : MonoBehaviour
 {
+    [Header("Settings")]
+    public float winAnimDelayTimeMag = 0.25f;
+    public float winAnimTime = 0.75f;
+
     public PlayerControl playerControl;
 
     private BlockControl[,] _blockMap;
@@ -43,13 +48,14 @@ class GamePlayManager : MonoBehaviour
             InitPlayerToGrid();
             _isGameStart = true;
         }
-        else if(GameState == GameStates.LoadLevel)
+        else if (GameState == GameStates.LoadLevel)
         {
             playerControl.SetPlayerActive(false);
         }
         else if (GameState == GameStates.WinGame)
         {
             _isGameStart = false;
+            WinAnim();
         }
 
     }
@@ -109,6 +115,21 @@ class GamePlayManager : MonoBehaviour
             playerControl.StartMove(playerPos, directionVector);
         }
 
+    }
+
+    private void WinAnim()
+    {
+        for (int row = 0; row < _mapRow; row++)
+        {
+            for (int col = 0; col < _mapCol; col++)
+            {
+                if (_blockMap[row, col].blockType == BlockType.Marked)
+                {
+                    float delay = row * winAnimDelayTimeMag;
+                    _blockMap[row, col].WinAnim(delay, winAnimTime);
+                }
+            }
+        }
     }
 
     private void SetBlockColor(GridVector gridPos)
